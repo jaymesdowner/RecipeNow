@@ -7,7 +7,7 @@ github_repo     = "Vaprobash"
 github_branch   = "master"
 
 # Server Configuration
-server_ip             = "192.168.33.11"
+server_ip             = "192.168.33.10"
 server_memory         = "384" # MB
 server_timezone       = "UTC"
 
@@ -31,7 +31,7 @@ composer_packages     = [        # List any global Composer packages that you wa
   #"codeception/codeception=*",
   #"phpspec/phpspec:2.0.*@dev",
 ]
-laravel_root_folder   = "/vagrant/laravel" # Where to install Laravel. Will `composer install` if a composer.json file exists
+laravel_root_folder   = "/vagrant" # Where to install Laravel. Will `composer install` if a composer.json file exists
 # symfony_root_folder   = "/vagrant/symfony" # Where to install Symfony.
 nodejs_version        = "latest"   # By default "latest" will equal the latest stable version
 nodejs_packages       = [          # List any global NodeJS packages that you want to install
@@ -99,13 +99,13 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/php.sh", args: [php_version, server_timezone]
 
   # Enable MSSQL for PHP
-  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/mssql.sh"
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/mssql.sh"
 
   # Provision Oh-My-Zsh
-  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/zsh.sh"
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/zsh.sh"
 
   # Provision Vim
-  # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/vim.sh"
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/vim.sh"
 
 
   ####
