@@ -107,8 +107,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
-        'OneTimeNote\OneTimeNoteServiceProvider',
-	),
+        'Way\Generators\GeneratorsServiceProvider'
+    ),
 
 	/*
 	|--------------------------------------------------------------------------
