@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateRecipeTable extends Migration {
+class CreateRecipesTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,8 +12,9 @@ class CreateRecipeTable extends Migration {
      */
      public function up()
      {
-        Schema::create('recipe', function($table) {
+        Schema::create('recipes', function($table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->string('recipe_title', 255);
             $table->longText('recipe_description');
             $table->longText('recipe_instructions');
@@ -23,6 +24,9 @@ class CreateRecipeTable extends Migration {
             $table->integer('recipe_rating');
             $table->string('recipe_slug', 255);
             $table->timestamps();
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
      }
 
@@ -34,6 +38,6 @@ class CreateRecipeTable extends Migration {
      public function down()
      {
 
-        Schema::drop('recipe');
+        Schema::drop('recipes');
      }
 }
