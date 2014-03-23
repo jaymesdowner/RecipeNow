@@ -1,11 +1,20 @@
-<?php
+<?php namespace RecipeNow\Models;
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Way\Database\Model;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User extends Model implements UserInterface, RemindableInterface {
 
-	/**
+    protected static $rules = array(
+        'email' => 'email|required|unique:users',
+        'name' => 'required',
+        'password' => 'required'
+    );
+
+    protected $fillable = array('email', 'name', 'password');
+
+    /**
 	 * The database table used by the model.
 	 *
 	 * @var string
