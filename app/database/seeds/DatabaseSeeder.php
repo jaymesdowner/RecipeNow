@@ -1,5 +1,5 @@
 <?php
-
+use RecipeNow\Models\User;
 class DatabaseSeeder extends Seeder {
 
 	/**
