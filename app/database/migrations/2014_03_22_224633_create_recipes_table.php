@@ -23,6 +23,7 @@ class CreateRecipesTable extends Migration {
             $table->string('recipe_nationality', 32);
             $table->integer('recipe_rating');
             $table->string('recipe_slug', 255);
+            $table->string('recipe_photo', 255);
             $table->timestamps();
             $table->foreign('user_id')
                 ->references('id')->on('users')
