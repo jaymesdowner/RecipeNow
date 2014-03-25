@@ -11,3 +11,10 @@
 |
 */
 Route::resource('recipes', '\RecipeNow\Controllers\RecipeController');
+Route::post('register', '\RecipeNow\Controllers\UserController@postRegister');
+Route::post('login', '\RecipeNow\Controllers\UserController@postLogin');
+Route::get('logout', '\RecipeNow\Controllers\UserController@getLogout');
+
+Route::get('users', '\RecipeNow\Controllers\UserController@getAllUsers');
+Route::get('users/{id}', '\RecipeNow\Controllers\UserController@getUserById');
+

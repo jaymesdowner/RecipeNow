@@ -175,7 +175,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-        'ManagesRecipes'  => 'RecipeNow\Facades\ManagesRecipes'
+        'ManagesRecipes'  => 'RecipeNow\Facades\ManagesRecipes',
+        'ManagesUsers'    => 'RecipeNow\Facades\ManagesUsers'
 	),
 
 );
