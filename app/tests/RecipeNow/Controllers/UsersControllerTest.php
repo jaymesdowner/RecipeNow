@@ -5,7 +5,6 @@ use RecipeNow\Facades\ManagesUsers;
 
 class UsersControllerTest extends TestCase {
 
-    protected $mock;
     protected $user;
 
     public function setUp() {
