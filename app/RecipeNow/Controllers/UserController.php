@@ -9,10 +9,10 @@ class UserController extends \Controller {
         try {
             $users = ManagesUsers::getAllUsers();
         } catch (\Exception $e) {
-            return \Response::make($e->getMessage(), 404);
+            return \Response::json($e->getMessage(), 404);
         }
 
-        return \Response::make($users);
+        return \Response::json($users);
     }
 
     public function getUserById($userId)
@@ -20,10 +20,10 @@ class UserController extends \Controller {
         try {
             $user = ManagesUsers::getUserById($userId);
         } catch (\Exception $e) {
-            return \Response::make($e->getMessage(), 404);
+            return \Response::json($e->getMessage(), 404);
         }
 
-        return \Response::make($user);
+        return \Response::json($user);
     }
 
     public function postRegister()
@@ -34,7 +34,7 @@ class UserController extends \Controller {
             return \Response::make($e->getMessage(), 401);
         }
 
-        return \Response::make($user, 201);
+        return \Response::json($user, 201);
     }
 
     public function postLogin()
@@ -43,7 +43,7 @@ class UserController extends \Controller {
         try {
             $user = ManagesUsers::loginUser(\Input::json()->all());
         } catch (\Exception $e) {
-            return \Response::json($e->getMessage());
+            return \Response::json($e->getMessage(), 403);
         }
 
         return \Response::json($user);
