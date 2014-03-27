@@ -27,13 +27,14 @@ class EloquentRecipeRepository implements RecipeInterface
      * Returns recipes
      *
      * @return Model
+     * @throws \Exception
      */
     public function getAllRecipes()
     {
         $recipes = $this->recipeModel->all();
 
         if (!$recipes) {
-            return null;
+            throw new \Exception('No Recipes Found');
         }
 
         return $recipes;
@@ -45,17 +46,18 @@ class EloquentRecipeRepository implements RecipeInterface
      * @param mixed $recipeId
      * @param bool $showIngredients
      * @return Model
+     * @throws \Exception
      */
     public function getRecipeById($recipeId, $showIngredients)
     {
-        if (!$showIngredients)    {
+        if (!$showIngredients) {
             $recipe = $this->recipeModel->find($recipeId);
         } else {
             $recipe = $this->recipeModel->with('ingredients')->find($recipeId);
         }
 
         if (!$recipe) {
-            return null;
+            throw new \Exception('No Recipe Found');
         }
 
         return $recipe;

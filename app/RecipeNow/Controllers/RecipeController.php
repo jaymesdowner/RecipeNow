@@ -1,14 +1,8 @@
 <?php
 namespace RecipeNow\Controllers;
-use RecipeNow\Services\ManagesRecipes;
+use RecipeNow\Facades\ManagesRecipes;
 
 class RecipeController extends \Controller {
-
-    protected $ManagesRecipes;
-
-    public function __construct(ManagesRecipes $ManagesRecipes) {
-        $this->ManagesRecipes = $ManagesRecipes;
-    }
 
 	/**
 	 * Display a listing of the resource.
@@ -17,11 +11,10 @@ class RecipeController extends \Controller {
 	 */
 	public function index()
 	{
-        $recipes = $this->ManagesRecipes->getAllRecipes();
-
-        if (!$recipes) {
-//            return Response::json(array('message' => Lang::get('onetimenote.messages.NOTE_NOT_FOUND')), 404);
-            return \Response::json(array('message' => 'No Recipes Found'), 404);
+        try {
+            $recipes = ManagesRecipes::getAllRecipes();
+        } catch (\Exception $e) {
+            return \Response::json($e->getMessage(), 404);
         }
 
         return \Response::json($recipes);
@@ -55,12 +48,10 @@ class RecipeController extends \Controller {
 	 */
 	public function show($id)
 	{
-        $recipe = \ManagesRecipes::getRecipeById($id, true);
-//        $recipe = $this->ManagesRecipes->getRecipeById($id, true);
-
-        if (!$recipe) {
-//            return Response::json(array('message' => Lang::get('onetimenote.messages.NOTE_NOT_FOUND')), 404);
-            return \Response::json(array('message' => 'Recipe Not Found'), 404);
+        try {
+            $recipe = ManagesRecipes::getRecipeById($id, true);
+        } catch (\Exception $e) {
+            return \Response::json($e->getMessage(), 404);
         }
 
         return \Response::json($recipe);
