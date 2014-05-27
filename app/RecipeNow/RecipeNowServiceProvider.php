@@ -1,8 +1,8 @@
 <?php
 namespace RecipeNow;
 
-use RecipeNow\Models\Recipe;
-use RecipeNow\Models\User;
+use RecipeNow\Models\Entities\Recipe;
+use RecipeNow\Models\Entities\User;
 use RecipeNow\Repositories\EloquentRecipeRepository;
 use RecipeNow\Repositories\EloquentUserRepository;
 use Illuminate\Support\ServiceProvider;

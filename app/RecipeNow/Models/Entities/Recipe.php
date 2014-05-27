@@ -1,5 +1,5 @@
 <?php
-namespace RecipeNow\Models;
+namespace RecipeNow\Models\Entities;
 use Way\Database\Model;
 
 class Recipe extends Model {

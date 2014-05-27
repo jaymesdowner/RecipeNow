@@ -1,10 +1,9 @@
-<?php namespace RecipeNow\Models;
+<?php namespace RecipeNow\Models\Entities;
 
 use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
 use Way\Database\Model;
 
-class User extends Model implements UserInterface, RemindableInterface {
+class User extends Model implements UserInterface {
 
     protected static $rules = array(
         'email' => 'email|required|unique:users',
@@ -62,4 +61,18 @@ class User extends Model implements UserInterface, RemindableInterface {
         $this->attributes['password'] = \Hash::make($password);
     }
 
+    public function getRememberToken()
+    {
+        return $this->remember_token;
+    }
+
+    public function setRememberToken($value)
+    {
+        $this->remember_token = $value;
+    }
+
+    public function getRememberTokenName()
+    {
+        return 'remember_token';
+    }
 }
