@@ -63,6 +63,15 @@ App::error(function(\RecipeNow\Exceptions\FormValidationException $exception)
     return Response::json([ 'errors' => (string) $exception->getErrors(), 'message' => $exception->getMessage() ], 401);
 });
 
+App::error(function(AccessDeniedHttpException $exception)
+{
+    if (Request::ajax()) {
+        return Response::ajaxJson($exception->getMessage(), 403);
+    }
+
+    return Response::json($exception->getMessage(), 403);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler

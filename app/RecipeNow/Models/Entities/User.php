@@ -1,15 +1,8 @@
 <?php namespace RecipeNow\Models\Entities;
 
-use Illuminate\Auth\UserInterface;
-use Way\Database\Model;
+use Illuminate\Auth\UserInterface;;
 
-class User extends Model implements UserInterface {
-
-    protected static $rules = array(
-        'email' => 'email|required|unique:users',
-        'name' => 'required',
-        'password' => 'required'
-    );
+class User extends \Eloquent implements UserInterface {
 
     protected $fillable = array('email', 'name', 'password');
 

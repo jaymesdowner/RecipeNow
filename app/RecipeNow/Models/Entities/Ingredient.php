@@ -1,8 +1,7 @@
 <?php
 namespace RecipeNow\Models\Entities;
-use Way\Database\Model;
 
-class Ingredient extends Model {
+class Ingredient extends \Eloquent {
 	protected $fillable = [];
 
     public function recipe()

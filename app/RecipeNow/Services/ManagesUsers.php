@@ -1,6 +1,5 @@
 <?php namespace RecipeNow\Services;
 
-use Mockery\CountValidator\Exception;
 use RecipeNow\Interfaces\UserInterface;
 
 class ManagesUsers
@@ -29,9 +28,9 @@ class ManagesUsers
 
     public function loginUser($input)
     {
-        // attempt to do the login
+        // attempt to login
         if (!\Auth::attempt(array('email' => $input['email'], 'password' => $input['password']))) {
-            return null;
+            throw new AccessDeniedHttpException("Invalid Credentials");
         }
 
         return \Auth::user();

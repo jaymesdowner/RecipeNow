@@ -1,6 +1,7 @@
-<?php namespace RecipeNow\Repositories;
+<?php namespace RecipeNow\Models\Repositories;
 
 use RecipeNow\Interfaces\UserInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -14,10 +15,10 @@ class EloquentUserRepository implements UserInterface
     /**
      * Setting our class $userModel to the injected model
      *
-     * @param Model $user
+     * @param \Eloquent $user
      * @return EloquentUserRepository
      */
-    public function __construct(Model $user)
+    public function __construct(\Eloquent $user)
     {
         $this->userModel = $user;
     }
@@ -33,7 +34,7 @@ class EloquentUserRepository implements UserInterface
         $users = $this->userModel->all();
 
         if (!$users) {
-            throw new \Exception('No Users Found');
+            throw new NotFoundHttpException('No Users Found');
         }
 
         return $users;
@@ -51,7 +52,7 @@ class EloquentUserRepository implements UserInterface
         $user = $this->userModel->find($userId);
 
         if (!$user) {
-            throw new \Exception('User Not Found');
+            throw new NotFoundHttpException('No User Found with ID #' . $userId);
         }
 
         return $user;
@@ -59,11 +60,16 @@ class EloquentUserRepository implements UserInterface
 
     public function createNewUser($input)
     {
-        $user = $this->userModel->fill($input);
+        $user = $this->userModel->create($input);
 
-        if (!$user->save()) {
-            throw new \InvalidArgumentException($this->userModel->getErrors());
-        }
+//        // Add Role
+//        $user->addRole('Regular');
+//
+//        // Add Subscription to User
+//        $user->subscription($input['plan'])->create($input['creditCardToken']);
+//
+//        // Fire Event
+//        $this->events->fire('user.register', array($user));
 
         return $user;
     }

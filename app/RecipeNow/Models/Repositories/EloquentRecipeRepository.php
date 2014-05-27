@@ -1,4 +1,4 @@
-<?php namespace RecipeNow\Repositories;
+<?php namespace RecipeNow\Models\Repositories;
 
 use RecipeNow\Interfaces\RecipeInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

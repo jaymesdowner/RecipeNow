@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'model' => '\RecipeNow\Models\User',
+	'model' => '\RecipeNow\Models\Entities\User',
 
 	/*
 	|--------------------------------------------------------------------------
