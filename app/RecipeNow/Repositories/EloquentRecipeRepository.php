@@ -1,8 +1,7 @@
 <?php namespace RecipeNow\Repositories;
 
 use RecipeNow\Interfaces\RecipeInterface;
-use Illuminate\Database\Eloquent\Model;
-//use \stdClass;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Our recipe repository, containing commonly used queries
@@ -15,10 +14,10 @@ class EloquentRecipeRepository implements RecipeInterface
     /**
      * Setting our class $recipeModel to the injected model
      *
-     * @param Model $recipe
+     * @param \Eloquent $recipe
      * @return EloquentRecipeRepository
      */
-    public function __construct(Model $recipe)
+    public function __construct(\Eloquent $recipe)
     {
         $this->recipeModel = $recipe;
     }
@@ -46,7 +45,7 @@ class EloquentRecipeRepository implements RecipeInterface
      * @param mixed $recipeId
      * @param bool $showIngredients
      * @return Model
-     * @throws \Exception
+     * @throws NotFoundHttpException
      */
     public function getRecipeById($recipeId, $showIngredients)
     {
@@ -57,7 +56,7 @@ class EloquentRecipeRepository implements RecipeInterface
         }
 
         if (!$recipe) {
-            throw new \Exception('No Recipe Found');
+            throw new NotFoundHttpException("No Recipe Found");
         }
 
         return $recipe;

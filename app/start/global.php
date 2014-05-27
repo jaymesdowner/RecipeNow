@@ -1,4 +1,6 @@
 <?php
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +50,17 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 
 App::error(function(Exception $exception, $code)
 {
-	Log::error($exception);
+    return Response::json($exception->getMessage());
+});
+
+App::error(function(NotFoundHttpException $exception)
+{
+    return Response::json($exception->getMessage(), 404);
+});
+
+App::error(function(\RecipeNow\Exceptions\FormValidationException $exception)
+{
+    return Response::json([ 'errors' => (string) $exception->getErrors(), 'message' => $exception->getMessage() ], 401);
 });
 
 /*

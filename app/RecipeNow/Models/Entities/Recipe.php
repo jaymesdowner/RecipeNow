@@ -1,12 +1,11 @@
 <?php
 namespace RecipeNow\Models\Entities;
-use Way\Database\Model;
 
-class Recipe extends Model {
+class Recipe extends \Eloquent {
 	protected $fillable = [];
 
     public function ingredients()
     {
-        return $this->hasMany('\RecipeNow\Models\Ingredient');
+        return $this->hasMany('\RecipeNow\Models\Entities\Ingredient');
     }
 }

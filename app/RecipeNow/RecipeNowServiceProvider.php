@@ -15,10 +15,10 @@ class RecipeNowServiceProvider extends ServiceProvider {
         /*
          *  Recipe Bindings
          */
-        $this->app->bind('RecipeNow\Interfaces\RecipeInterface', function($app)
+        $this->app->bind('\RecipeNow\Interfaces\RecipeInterface', function($app)
         {
             // Return a new instance of RecipeRepository with the Recipe model as the parameter
-            return new EloquentRecipeRepository(new Recipe());
+            return new EloquentRecipeRepository(new Recipe);
         });
 
         // Used in Facade
@@ -34,7 +34,7 @@ class RecipeNowServiceProvider extends ServiceProvider {
         $this->app->bind('RecipeNow\Interfaces\UserInterface', function($app)
         {
             // Return a new instance of UserRepository with the User model as the parameter
-            return new EloquentUserRepository(new User());
+            return new EloquentUserRepository(new User);
         });
 
         // Used in Facade

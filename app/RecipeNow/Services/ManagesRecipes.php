@@ -20,18 +20,7 @@ class ManagesRecipes
         return $recipes;
     }
 
-    public function getRecipeById($recipeId, $ingredients = true) {
-
-        if (!$ingredients) {
-            $recipe = $this->recipeRepo->getRecipeById($recipeId, false);
-        } else {
-            $recipe = $this->recipeRepo->getRecipeById($recipeId, true);
-        }
-
-        if (!$recipe) {
-           $recipe = 'No Recipe Found';
-        }
-
-        return $recipe;
+    public function getRecipeById($recipeId, $showIngredients = true) {
+        return $this->recipeRepo->getRecipeById($recipeId, $showIngredients);
     }
 }

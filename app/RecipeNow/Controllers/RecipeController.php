@@ -11,12 +11,7 @@ class RecipeController extends \Controller {
 	 */
 	public function index()
 	{
-        try {
-            $recipes = ManagesRecipes::getAllRecipes();
-        } catch (\Exception $e) {
-            return \Response::json($e->getMessage(), 404);
-        }
-
+        $recipes = ManagesRecipes::getAllRecipes();
         return \Response::json($recipes);
 	}
 
@@ -48,12 +43,7 @@ class RecipeController extends \Controller {
 	 */
 	public function show($id)
 	{
-        try {
-            $recipe = ManagesRecipes::getRecipeById($id, true);
-        } catch (\Exception $e) {
-            return \Response::json($e->getMessage(), 404);
-        }
-
+        $recipe = ManagesRecipes::getRecipeById($id, true);
         return \Response::json($recipe);
 	}
 
