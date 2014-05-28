@@ -1,10 +1,17 @@
 <?php
 namespace RecipeNow\Controllers;
 use RecipeNow\Facades\ManagesRecipes;
+use RecipeNow\Models\Validation\RecipeRules;
 
 class RecipeController extends \Controller {
 
-	/**
+    protected $recipeForm;
+
+    public function __construct(RecipeRules $recipeForm) {
+        $this->recipeForm = $recipeForm;
+    }
+
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
@@ -16,26 +23,19 @@ class RecipeController extends \Controller {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
 	public function store()
 	{
-		//
-	}
+        $this->recipeForm->validate(\Input::json()->all());
+        $recipe = ManagesRecipes::createNewRecipe(\Input::json()->all());
 
-	/**
+        return \Response::json($recipe);
+    }
+
+    /**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id

@@ -1,6 +1,6 @@
 <?php namespace RecipeNow\Models\Repositories;
 
-use RecipeNow\Interfaces\RecipeInterface;
+use RecipeNow\Models\Interfaces\RecipeInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -62,22 +62,21 @@ class EloquentRecipeRepository implements RecipeInterface
         return $recipe;
     }
 
-//    /**
-//     * Converting the Eloquent object to a standard format
-//     *
-//     * @param mixed $recipe
-//     * @return stdClass
-//     */
-//    protected function convertFormat($recipe)
-//    {
-//        if ($recipe == null)
-//        {
-//            return null;
-//        }
+    /**
+     * Create and then return a Prayer Request
+     *
+     * @param mixed $input
+     * @throws \Exception
+     * @return Model
+     */
+    public function create($input)
+    {
+        // Attempt to create
+        $recipe = $this->recipeModel->create($input);
+
+//        // Fire Event
+//        $this->events->fire('request.create', array(json_decode($request)));
 //
-//        $object = new stdClass();
-//        $object->id = $recipe->id;
-//
-//        return $object;
-//    }
+        return $recipe;
+    }
 }

@@ -28,9 +28,9 @@ class RecipeCategory {
      * @param $category
      * @throws \InvalidArgumentException
      */
-    public function disallowInvalidNationalities($category)
+    public function disallowInvalidCategories($category)
     {
-        if (!in_array($category, $this->$allowedCategories)) {
+        if (!in_array($category, $this->allowedCategories)) {
             throw new \InvalidArgumentException('Invalid Recipe Category');
         }
     }

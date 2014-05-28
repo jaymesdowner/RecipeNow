@@ -1,8 +1,7 @@
 <?php namespace RecipeNow\Models\Repositories;
 
-use RecipeNow\Interfaces\UserInterface;
+use RecipeNow\Models\Interfaces\UserInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Our user repository, containing commonly used queries

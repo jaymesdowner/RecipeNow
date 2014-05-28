@@ -15,7 +15,7 @@ class RecipeNowServiceProvider extends ServiceProvider {
         /*
          *  Recipe Bindings
          */
-        $this->app->bind('\RecipeNow\Models\Interfaces\RecipeInterface', function($app)
+        $this->app->bind('RecipeNow\Models\Interfaces\RecipeInterface', function($app)
         {
             // Return a new instance of RecipeRepository with the Recipe model as the parameter
             return new EloquentRecipeRepository(new Recipe);

@@ -30,7 +30,7 @@ class RecipeNationality {
      */
     public function disallowInvalidNationalities($nationality)
     {
-        if (!in_array($nationality, $this->$allowedNationalities)) {
+        if (!in_array($nationality, $this->allowedNationalities)) {
             throw new \InvalidArgumentException('Invalid Recipe Nationality');
         }
     }

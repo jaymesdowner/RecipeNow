@@ -30,7 +30,7 @@ class RecipeType {
      */
     public function disallowInvalidTypes($type)
     {
-        if (!in_array($type, $this->$allowedTypes)) {
+        if (!in_array($type, $this->allowedTypes)) {
             throw new \InvalidArgumentException('Invalid Recipe Type');
         }
     }

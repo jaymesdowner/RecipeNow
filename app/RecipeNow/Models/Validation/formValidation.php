@@ -1,5 +1,5 @@
 <?php
-namespace RecipeNow\Models\Entities;
+namespace RecipeNow\Models\Validation;
 
 use Illuminate\Validation\Factory as Validator;
 use RecipeNow\Exceptions\FormValidationException;

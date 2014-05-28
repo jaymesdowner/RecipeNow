@@ -1,4 +1,4 @@
-<?php namespace RecipeNow\Interfaces;
+<?php namespace RecipeNow\Models\Interfaces;
 
 interface RecipeInterface
 {

@@ -30,7 +30,7 @@ class RecipeRating {
      */
     public function disallowInvalidRatings($rating)
     {
-        if (!in_array($rating, $this->$allowedRatings)) {
+        if (!in_array($rating, $this->allowedRatings)) {
             throw new \InvalidArgumentException('Invalid Recipe Rating');
         }
     }

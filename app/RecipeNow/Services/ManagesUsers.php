@@ -1,6 +1,6 @@
 <?php namespace RecipeNow\Services;
 
-use RecipeNow\Interfaces\UserInterface;
+use RecipeNow\Models\Interfaces\UserInterface;
 
 class ManagesUsers
 {
