@@ -33,7 +33,7 @@ class EloquentRecipeRepository implements RecipeInterface
         $recipes = $this->recipeModel->all();
 
         if (!$recipes) {
-            throw new \Exception('No Recipes Found');
+            throw new NotFoundHttpException('No Recipes Found');
         }
 
         return $recipes;
