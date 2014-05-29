@@ -1,6 +1,6 @@
 <?php namespace RecipeNow\Models\Validation;
 
-use RecipeNow\Models\Entities\formValidation;
+use RecipeNow\Models\Validation\formValidation;
 
 class RegistrationRules extends formValidation {
     /**

@@ -1,6 +1,6 @@
 <?php
 
-use RecipeNow\Models\User;
+use RecipeNow\Models\Entities\User;
 use RecipeNow\Facades\ManagesUsers;
 
 class UsersControllerTest extends TestCase {
@@ -34,19 +34,6 @@ class UsersControllerTest extends TestCase {
         $this->assertJson($response->getContent());
     }
 
-    public function test_get_all_users_throw_exception_404()
-    {
-        // Arrange
-        ManagesUsers::shouldReceive('getAllUsers')->once()->andThrow(new Mockery\Exception);
-
-        // Act
-        $response = $this->call('GET', '/users');
-
-        // Assert
-        $this->assertResponseStatus(404);
-        $this->assertJson($response->getContent());
-    }
-
     public function test_get_single_user_success()
     {
         // Arrange
@@ -60,23 +47,14 @@ class UsersControllerTest extends TestCase {
         $this->assertJson($response->getContent());
     }
 
-    public function test_get_single_user_throw_exception_404()
-    {
-        // Arrange
-        ManagesUsers::shouldReceive('getUserById')->once()->andThrow(new Mockery\Exception);
-
-        // Act
-        $response = $this->call('GET', '/users/1');
-
-        // Assert
-        $this->assertResponseStatus(404);
-        $this->assertJson($response->getContent());
-    }
-
     public function test_register_user_success()
     {
         // Arrange
         ManagesUsers::shouldReceive('createNewUser')->once()->andReturn($this->user);
+
+        $mock = Mockery::mock('RecipeNow\Models\Validation\RegistrationRules');
+        $mock->shouldReceive('validate')->once()->andReturn(true);
+        $this->app->instance('RecipeNow\Models\Validation\RegistrationRules', $mock);
 
         // Act
         $response = $this->call('POST', '/register');
@@ -86,18 +64,6 @@ class UsersControllerTest extends TestCase {
         $this->assertJson($response->getContent());
     }
 
-    public function test_register_user_throw_exception_401()
-    {
-        // Arrange
-        ManagesUsers::shouldReceive('createNewUser')->once()->andThrow(new Mockery\Exception);
-
-        // Act
-        $response = $this->call('POST', '/register');
-
-        // Assert
-        $this->assertResponseStatus(401);
-        $this->assertJson($response->getContent());
-    }
 
     public function test_login_user_success()
     {
@@ -109,19 +75,6 @@ class UsersControllerTest extends TestCase {
 
         // Assert
         $this->assertResponseOk();
-        $this->assertJson($response->getContent());
-    }
-
-    public function test_login_user_authorization_fail_throw_exception_403()
-    {
-        // Arrange
-        ManagesUsers::shouldReceive('loginUser')->once()->andThrow(new Mockery\Exception);
-
-        // Act
-        $response = $this->call('POST', '/login');
-
-        // Assert
-        $this->assertResponseStatus(403);
         $this->assertJson($response->getContent());
     }
 
