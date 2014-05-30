@@ -48,17 +48,6 @@ class RecipeController extends \Controller {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  int  $id
@@ -66,8 +55,11 @@ class RecipeController extends \Controller {
 	 */
 	public function update($id)
 	{
-		//
-	}
+        $this->recipeForm->validate(\Input::json()->all());
+        $recipe = ManagesRecipes::updateRequest($id, \Input::json()->all());
+
+        return \Response::json($recipe);
+    }
 
 	/**
 	 * Remove the specified resource from storage.
@@ -77,7 +69,9 @@ class RecipeController extends \Controller {
 	 */
 	public function destroy($id)
 	{
-		//
-	}
+        $response = ManagesRecipes::deleteRecipe($id);
+
+        return \Response::json($response);
+    }
 
 }

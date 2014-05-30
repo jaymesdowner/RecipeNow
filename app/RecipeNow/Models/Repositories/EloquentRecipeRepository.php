@@ -28,7 +28,7 @@ class EloquentRecipeRepository implements RecipeInterface
      * @return Model
      * @throws \Exception
      */
-    public function getAllRecipes()
+    public function index()
     {
         $recipes = $this->recipeModel->all();
 
@@ -47,7 +47,7 @@ class EloquentRecipeRepository implements RecipeInterface
      * @return Model
      * @throws NotFoundHttpException
      */
-    public function getRecipeById($recipeId, $showIngredients)
+    public function find($recipeId, $showIngredients)
     {
         if (!$showIngredients) {
             $recipe = $this->recipeModel->find($recipeId);
@@ -63,7 +63,7 @@ class EloquentRecipeRepository implements RecipeInterface
     }
 
     /**
-     * Create and then return a Prayer Request
+     * Create and then return a Recipe
      *
      * @param mixed $input
      * @throws \Exception
@@ -78,5 +78,42 @@ class EloquentRecipeRepository implements RecipeInterface
 //        $this->events->fire('request.create', array(json_decode($request)));
 //
         return $recipe;
+    }
+
+    /**
+     * Edit and then return Recipe
+     *
+     * @param mixed $input
+     * @param \Eloquent $recipe
+     * @throws \HttpException
+     * @return Model
+     */
+    public function update($input, \Eloquent $recipe)
+    {
+        // Update Recipe
+        $recipe->fill($input);
+        $recipe->save();
+
+//        // Fire Event
+//        $this->events->fire('request.update', array(json_decode($recipe)));
+
+        return $recipe;
+    }
+
+    /**
+     * Delete Request
+     *
+     * @param int $id
+     * @return Model
+     * @throws NotFoundHttpException
+     */
+    public function delete($id) {
+        $recipe = $this->recipeModel->where('id', '=', $id)->first();
+
+        if (!$recipe) {
+            throw new NotFoundHttpException("No Recipe with id #" . $id . " Found");
+        }
+
+        $recipe->delete();
     }
 }

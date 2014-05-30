@@ -10,11 +10,13 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-Route::resource('recipes', '\RecipeNow\Controllers\RecipeController');
-Route::post('register', '\RecipeNow\Controllers\UserController@postRegister');
-Route::post('login', '\RecipeNow\Controllers\UserController@postLogin');
-Route::get('logout', '\RecipeNow\Controllers\UserController@getLogout');
+Route::resource('recipes', '\RecipeNow\Controllers\RecipeController', ['except' => ['edit']]);
+Route::resource('recipes.ingredients', '\RecipeNow\Controllers\IngredientController', ['except' => ['index', 'edit']]);
 
-Route::get('users', '\RecipeNow\Controllers\UserController@getAllUsers');
-Route::get('users/{id}', '\RecipeNow\Controllers\UserController@getUserById');
+//Route::post('register', '\RecipeNow\Controllers\UserController@postRegister');
+//Route::post('login', '\RecipeNow\Controllers\UserController@postLogin');
+//Route::get('logout', '\RecipeNow\Controllers\UserController@getLogout');
+//
+//Route::get('users', '\RecipeNow\Controllers\UserController@getAllUsers');
+//Route::get('users/{id}', '\RecipeNow\Controllers\UserController@getUserById');
 

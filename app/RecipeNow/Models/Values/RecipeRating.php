@@ -40,6 +40,6 @@ class RecipeRating {
     }
 
     public function __toString() {
-        return $this->rating;
+        return (string) $this->rating;
     }
 }
