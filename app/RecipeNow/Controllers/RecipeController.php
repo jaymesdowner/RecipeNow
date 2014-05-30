@@ -56,7 +56,7 @@ class RecipeController extends \Controller {
 	public function update($id)
 	{
         $this->recipeForm->validate(\Input::json()->all());
-        $recipe = ManagesRecipes::updateRequest($id, \Input::json()->all());
+        $recipe = ManagesRecipes::updateRecipe($id, \Input::json()->all());
 
         return \Response::json($recipe);
     }

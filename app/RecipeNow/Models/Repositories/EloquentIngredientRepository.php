@@ -79,7 +79,7 @@ class EloquentIngredientRepository implements IngredientInterface
     }
 
     /**
-     * Delete Request
+     * Delete Recipe
      *
      * @param int $ingredientId
      * @return Model

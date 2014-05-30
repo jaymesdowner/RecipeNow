@@ -60,7 +60,7 @@ class ManagesRecipes
      * @return string
      */
     public function deleteRecipe($id) {
-        $request = $this->recipeRepo->find($id, false);
+        $recipe = $this->recipeRepo->find($id, false);
         $this->recipeRepo->delete($id);
 
         return "Recipe with id #" . $id . " has been chopped.";
