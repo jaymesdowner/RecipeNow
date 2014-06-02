@@ -11,7 +11,7 @@ class RecipeCategory {
     /**
      * @var array
      */
-    protected $allowedCategories = ['entrees', 'casseroles', 'soups', 'salads', 'breakfast', 'sides', 'appetizers', 'breads / grains', 'desserts', 'none'];
+    protected $allowedCategories = ['Entrees', 'Casseroles', 'Soups', 'Salads', 'Breakfast', 'Sides', 'Appetizers', 'Breads / Grains', 'Desserts', 'None'];
 
     /**
      * @param $category

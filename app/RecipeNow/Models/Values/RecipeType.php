@@ -11,7 +11,7 @@ class RecipeType {
     /**
      * @var array
      */
-    protected $allowedTypes = ['poultry', 'beef', 'seafood', 'pork', 'none'];
+    protected $allowedTypes = ['Poultry', 'Beef', 'Seafood', 'Pork', 'None'];
 
     /**
      * @param $type

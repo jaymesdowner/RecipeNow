@@ -71,12 +71,21 @@ class EloquentRecipeRepository implements RecipeInterface
      */
     public function create($input)
     {
-        // Attempt to create
+        $ingredients = $input['ingredients'];
+        unset($input['ingredients']);
+
         $recipe = $this->recipeModel->create($input);
 
-//        // Fire Event
-//        $this->events->fire('request.create', array(json_decode($request)));
-//
+        foreach ($ingredients as $ingredient) {
+            $ingredient['recipe_id'] = $recipe->id;
+            $ingredients_array[] = $ingredient;
+        }
+
+        $recipe->ingredients()->insert($ingredients_array);
+
+////        // Fire Event
+////        $this->events->fire('recipe.create', array(json_decode($request)));
+
         return $recipe;
     }
 
@@ -90,12 +99,34 @@ class EloquentRecipeRepository implements RecipeInterface
      */
     public function update($input, \Eloquent $recipe)
     {
-        // Update Recipe
-        $recipe->fill($input);
-        $recipe->save();
+        $ingredients = $input['ingredients'];
+        $ingredientsToBeDeleted = $input['ingredientsToBeDeleted'];
+        unset($input['ingredients']);
+        unset($input['ingredientsToBeDeleted']);
+
+        $recipe->update($input);
+
+        // @TODO - Move this block to it's own class or in the model somewhere
+        if ($ingredients) {
+            foreach ($ingredients as $ingredient) {
+                if (isset($ingredient['id'])) {
+                    unset($ingredient['recipe_id']);
+                    $recipe->ingredients()->where('id', '=', $ingredient['id'])->update($ingredient);
+                } else {
+                    $ingredient['recipe_id'] = $recipe->id;
+                    $recipe->ingredients()->insert($ingredient);
+                }
+            }
+        }
+
+        if ($ingredientsToBeDeleted) {
+            foreach ($ingredientsToBeDeleted as $ingredientId) {
+                $recipe->ingredients()->where('id', '=', $ingredientId)->delete();
+            }
+        }
 
 //        // Fire Event
-//        $this->events->fire('request.update', array(json_decode($recipe)));
+//        $this->events->fire('recipe.update', array(json_decode($recipe)));
 
         return $recipe;
     }

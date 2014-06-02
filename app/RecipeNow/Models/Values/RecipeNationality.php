@@ -11,7 +11,7 @@ class RecipeNationality {
     /**
      * @var array
      */
-    protected $allowedNationalities = ['american', 'asian', 'french', 'greek', 'italian', 'mexican', 'none'];
+    protected $allowedNationalities = ['American', 'Asian', 'French', 'Greek', 'Italian', 'Mexican', 'None'];
 
     /**
      * @param $nationality

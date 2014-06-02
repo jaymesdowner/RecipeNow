@@ -10,8 +10,26 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-Route::resource('recipes', '\RecipeNow\Controllers\RecipeController', ['except' => ['edit']]);
-Route::resource('recipes.ingredients', '\RecipeNow\Controllers\IngredientController', ['except' => ['index', 'edit']]);
+
+/*
+ * Home Route
+ */
+Route::get('/', function() { return View::make('index'); });
+
+/*
+ * API Routes
+ */
+Route::group(array('prefix' => 'api'), function()
+{
+    Route::resource('recipes', '\RecipeNow\Controllers\RecipeController', ['except' => ['edit']]);
+});
+
+/*
+ * Catch ALL Route
+ */
+// all routes that are not home or api will be redirected to the frontend
+// this allows angular to route them
+Route::any('{path?}', function($path) { return View::make('index'); })->where('path', '.+');
 
 //Route::post('register', '\RecipeNow\Controllers\UserController@postRegister');
 //Route::post('login', '\RecipeNow\Controllers\UserController@postLogin');

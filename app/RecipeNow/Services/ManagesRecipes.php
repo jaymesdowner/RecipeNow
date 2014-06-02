@@ -65,39 +65,4 @@ class ManagesRecipes
 
         return "Recipe with id #" . $id . " has been chopped.";
     }
-
-    /**
-     * @param $input
-     * @param $recipeId
-     * @return mixed
-     */
-    public function createNewIngredient($recipeId, $input) {
-        return $this->ingredientRepo->create($recipeId, $input);
-    }
-
-    /*
-     * @param $id
-     * @param $input
-     * @return mixed
-     */
-    /**
-     * @param $id
-     * @param $input
-     * @return mixed
-     */
-    public function updateIngredient($id, $input) {
-        $ingredient = $this->ingredientRepo->find($id);
-        return $this->ingredientRepo->update($input, $ingredient);
-    }
-
-    /**
-     * @param $id
-     * @return string
-     */
-    public function deleteIngredient($id) {
-        $ingredient = $this->ingredientRepo->find($id);
-        $this->ingredientRepo->delete($id);
-
-        return "Ingredient with id #" . $id . " has been chopped.";
-    }
 }
