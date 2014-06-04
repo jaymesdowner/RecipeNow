@@ -25,9 +25,9 @@ class CreateRecipesTable extends Migration {
             $table->string('recipe_slug', 255);
             $table->string('recipe_photo', 255);
             $table->timestamps();
-            $table->foreign('user_id')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+//            $table->foreign('user_id')
+//                ->references('id')->on('users')
+//                ->onDelete('cascade');
         });
      }
 
