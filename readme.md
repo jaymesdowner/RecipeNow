@@ -1,7 +1,12 @@
-## RecipeNow
+RecipeNow
+================
+RecipeNow is a simple Cooking Recipe CRUD Application built with Laravel 4.1.
 
-RecipeNow is a simple Cooking Recipe CRUD Application built with Laravel 4.x. This application is still in development and not fully functional at this time.
+### Demo
+[http://recipenow.demo.pathsofdesign.com](http://recipenow.demo.pathsofdesign.com)
+
+### Single Page Application Repository
+[https://github.com/Pathsofdesign/RecipeNow-site](https://github.com/Pathsofdesign/RecipeNow-site)
 
 ### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+MIT
