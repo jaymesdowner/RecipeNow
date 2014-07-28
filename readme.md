@@ -1,6 +1,6 @@
 RecipeNow
 ================
-RecipeNow is a simple Cooking Recipe API built with Laravel 4.1.
+RecipeNow is a simple Cooking Recipe API built with Laravel 4.2
 
 ### Demo
 [http://recipenow.demo.pathsofdesign.com](http://recipenow.demo.pathsofdesign.com)
